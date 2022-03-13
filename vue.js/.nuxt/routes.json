@@ -1,0 +1,62 @@
+[
+  {
+    "name": "changeEvent",
+    "path": "/changeEvent",
+    "component": "/Users/q/Desktop/vue.js/pages/changeEvent.vue",
+    "chunkName": "pages/changeEvent"
+  },
+  {
+    "name": "eventCreate",
+    "path": "/eventCreate",
+    "component": "/Users/q/Desktop/vue.js/pages/eventCreate.vue",
+    "chunkName": "pages/eventCreate"
+  },
+  {
+    "name": "eventFeedbackUc",
+    "path": "/eventFeedbackUc",
+    "component": "/Users/q/Desktop/vue.js/pages/eventFeedbackUc.vue",
+    "chunkName": "pages/eventFeedbackUc"
+  },
+  {
+    "name": "eventFeedbackUchitel",
+    "path": "/eventFeedbackUchitel",
+    "component": "/Users/q/Desktop/vue.js/pages/eventFeedbackUchitel.vue",
+    "chunkName": "pages/eventFeedbackUchitel"
+  },
+  {
+    "name": "id",
+    "path": "/id",
+    "component": "/Users/q/Desktop/vue.js/pages/id.vue",
+    "chunkName": "pages/id"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/Users/q/Desktop/vue.js/pages/login.vue",
+    "chunkName": "pages/login"
+  },
+  {
+    "name": "main",
+    "path": "/main",
+    "component": "/Users/q/Desktop/vue.js/pages/main.vue",
+    "chunkName": "pages/main"
+  },
+  {
+    "name": "myevents",
+    "path": "/myevents",
+    "component": "/Users/q/Desktop/vue.js/pages/myevents.vue",
+    "chunkName": "pages/myevents"
+  },
+  {
+    "name": "profile",
+    "path": "/profile",
+    "component": "/Users/q/Desktop/vue.js/pages/profile.vue",
+    "chunkName": "pages/profile"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/q/Desktop/vue.js/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]
