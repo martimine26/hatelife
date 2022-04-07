@@ -19,14 +19,14 @@
      </div>
    </div>
    <div class="row row-cols-1 row-cols-md-3 g-4 mt-10" style="max-width:1300px">
-     <div v-for="item in array" :key="item.id">
+     <div v-for="item in all" :key="item.id">
        <div class="col">
         <div class="card" style="cursor:pointer;z-index:1" @click.prevent="openUser(item)">
          <div class="card-img-top">
-             <h5 class="card-title">{{ item.zag }}</h5>
+             <h5 class="card-title">{{ item.name }}</h5>
          </div>
          <div class="card-body">
-           <p class="card-text">{{ item.text }}</p>
+           <p class="card-text">{{ item.short_description }}</p>
            <div class="icon" @click="okay()">
              <div :id="item.id" class="norm" width="20px" v-bind:class="{ ok: gog }">
            </div>
@@ -41,19 +41,56 @@
 </template>
 
 <script>
-import array from '@/components/array.js'
 import Navbar from '@/components/Navbar.vue'
 export default {
   data () {
     return{
-      array: array,
       gog: false,
       calen: false,
       filter: false,
+      all: []
     }
   },
   components:{
     Navbar
+  },
+  mounted(){
+    let self = this
+    const requestURL = 'https://activae-vitae.herokuapp.com/events?offset=0&limit=10'
+
+    function sendRequest(method, url, body = null) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest()
+
+          xhr.open(method, url)
+
+          xhr.responseType = 'json'
+          xhr.setRequestHeader('Content-Type', 'application/json')
+
+
+          xhr.onload = () => {
+            let stas = xhr.response
+            for(let i = 0; i < stas.events.length; i++){
+              self.all.push(stas.events[i])
+            }
+            console.log(self.all);
+          }
+
+          xhr.onerror = () => {
+            reject(xhr.response)
+          }
+
+          xhr.send(JSON.stringify(body))
+        })
+      }
+
+
+
+      sendRequest('GET', requestURL)
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+
+
   },
   methods:{
     okay(){
@@ -88,7 +125,7 @@ export default {
       }
     },
     openUser(item) {
-      this.$router.push('/id')
+      this.$router.push('/event/' + item.id)
     },
   }
 }

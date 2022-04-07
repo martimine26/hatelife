@@ -15,12 +15,13 @@
       </div>
       <div class="mainBlock">
         <h3>Если хотите, можете оставить более подробный отзыв:</h3>
-        <textarea class="bigInput">
+        <textarea class="bigInput" ref="text">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </textarea>
       </div>
       <div class="buttonBlock">
-        <button type="button" class="but">Отправить отзыв</button>
+        <button type="button" class="but" @click="send()">Отправить отзыв</button>
+        <p v-show="false" id="one">{{ $route.params.id }}</p>
       </div>
     </div>
   </div>
@@ -28,6 +29,46 @@
 
 <script>
 export default {
+  methods:{
+    send(){
+      let text = this.$refs.text.value
+      let next = document.getElementById('first').innerHTML
+      const requestURL = `http://9f25-94-25-168-128.ngrok.io/comments`
+
+      function sendRequest(method, url, body = null) {
+          return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest()
+
+            xhr.open(method, url)
+
+            let stas = localStorage.getItem('token')
+
+            xhr.responseType = 'json'
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.setRequestHeader('Authorization' , `Basic ${stas}`)
+
+
+            xhr.onload = () => {
+              resolve(xhr.response)
+            }
+
+            xhr.onerror = () => {
+              reject(xhr.response)
+            }
+
+            xhr.send(JSON.stringify(body))
+          })
+        }
+
+        const body = {
+
+        }
+
+        sendRequest('POST', requestURL, body)
+          .then(data => console.log(data))
+          .catch(err => console.log(err))
+    }
+  }
 }
 </script>
 

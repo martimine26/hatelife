@@ -8,11 +8,11 @@
     <div class="main">
       <div class="profile">
         <div class="avatar"></div>
-        <h2 class="name">Иван стас стасов</h2>
+        <h2 class="name">{{name}}</h2>
       </div>
       <div class="buttons">
-        <button>Создать мероприятие</button>
-        <button>Cменить аккаунт</button>
+        <button @click="mero()" v-if="role">Создать мероприятие</button>
+        <button ref="ok" @click="rel()">Cменить аккаунт</button>
       </div>
       <div class="myEvents">
         <h2>Мои события</h2>
@@ -23,6 +23,29 @@
 
 <script>
 export default {
+  data(){
+    return{
+      name: '',
+      role: false,
+    }
+  },
+  mounted(){
+    this.name = localStorage.getItem('name');
+    let ll = localStorage.getItem('role')
+    if (localStorage.getItem('role') == 'teacher' || localStorage.getItem('role') == 'Teacher' || localStorage.getItem('role') == 'Director' || localStorage.getItem('role') == 'director') {
+        this.role = true
+    }else{
+        this.role = false
+    }
+  },
+  methods:{
+    mero(){
+      document.location.href = "http://activaevitae.hopto.org/eventCreate"
+    },
+    rel(){
+      document.location.href = "http://activaevitae.hopto.org/"
+    }
+  }
 }
 </script>
 
@@ -73,6 +96,7 @@ h4{
 .buttons{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 button{

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="main">
   <div class="avBlock">
-    <div class="avatar top"></div>
+    <div class="avatar top" @click="ll()"></div>
   </div>
     <div class="cont">
       <div class="icons">
@@ -19,7 +19,7 @@
       <div class="icons lo">
         <button type="button" name="button" style="margin-right:20px;">Зарегистрироваться</button>
       </div>
-      <div class="avatar bot"></div>
+      <div class="avatar bot" @click="ll()"></div>
     </div>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     kek(){
       this.$emit('hool')
     },
+    ll(){
+      this.$router.push('profile')
+    }
   }
 }
 </script>
@@ -42,6 +45,8 @@ export default {
   width: 100%;
   display: flex;
   justify-content: end;
+
+
 }
 .top{
   display: none;
@@ -108,6 +113,7 @@ button{
   height: 60px;
   border-radius: 50px;
   border: 2px solid black;
+   cursor: pointer;
 }
 @media (max-width: 1000px) {
   input{
